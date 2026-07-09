@@ -199,14 +199,6 @@
   .bcol.yes li::before{ content:"✓"; position:absolute; left:0; color:var(--pass); font-family:var(--mono); }
   .bcol.no li::before{ content:"—"; position:absolute; left:0; color:var(--fail); font-family:var(--mono); }
 
-  .family{ display:grid; grid-template-columns:repeat(5,1fr); gap:.8rem; margin-top:2rem; }
-  @media (max-width: 900px){ .family{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width: 520px){ .family{ grid-template-columns:1fr; } }
-  .fam{ display:block; padding:1rem 1.1rem; background:var(--panel); border:1px solid var(--line); border-radius:3px; text-decoration:none; color:var(--text); transition:transform .15s ease, border-color .15s ease; }
-  .fam:hover{ transform:translateY(-2px); border-color:var(--violet); }
-  .fam.self{ border-color:var(--violet); border-left:3px solid var(--violet); }
-  .fam .t{ font-weight:700; font-size:.92rem; display:block; margin-bottom:.3rem; }
-  .fam .s{ font-size:.79rem; color:var(--text-dim); }
 
   .closing{ text-align:center; border-bottom:none; }
   .closing .col{ max-width:56ch; }
@@ -549,10 +541,6 @@
       "boundary.no1":"Whether the oracle is well-designed — a weak gate lets weak work pass; strength is a separate concern",
       "boundary.no2":"Whether a result \"reads well\" — tone and taste stay a human's call",
       "boundary.no3":"The executor's reasoning. TASK.md verifies the outcome a model produces, never how it thinks.",
-      "family.tag":"06 · The family","family.h2":"One DNA, different planes",
-      "family.p":"A two-layer document (machine-verifiable + human-judgeable) plus deterministic validation, applied to a different plane in each sibling. TASK.md is the execution sibling — the dynamic one.",
-      "family.f1":"Dynamic task outcome — this project","family.f2":"Static code (frozen oracle)","family.f3":"Context contract",
-      "family.f4":"Knowledge-driven method","family.f5":"Visual identity (Google Labs)",
       "closing.h2":"Read the contract yourself",
       "closing.p":"MIT-licensed, PoC v0.1. Every claim on this page is checked into the repository that backs it — including what's still a mock.",
       "closing.cta1":"Open the repository","closing.cta2":"Read the README"
@@ -603,10 +591,6 @@
       "boundary.no1":"Si el oráculo está bien diseñado — un gate débil deja pasar trabajo débil; la fuerza es un tema aparte",
       "boundary.no2":"Si un resultado \"se lee bien\" — el tono y el gusto siguen siendo de un humano",
       "boundary.no3":"El razonamiento del ejecutor. TASK.md verifica el outcome que un modelo produce, nunca cómo piensa.",
-      "family.tag":"06 · La familia","family.h2":"Un solo ADN, planos distintos",
-      "family.p":"Un documento de dos capas (verificable por máquina + juzgable por humano) más validación determinista, aplicado a un plano distinto en cada hermano. TASK.md es el hermano de ejecución — el dinámico.",
-      "family.f1":"Outcome dinámico de tareas — este proyecto","family.f2":"Código estático (oráculo congelado)","family.f3":"Contrato de contexto",
-      "family.f4":"Método knowledge-driven","family.f5":"Identidad visual (Google Labs)",
       "closing.h2":"Leé el contrato vos mismo",
       "closing.p":"Licencia MIT, PoC v0.1. Cada afirmación de esta página está commiteada en el repositorio que la respalda — incluido lo que todavía es un mock.",
       "closing.cta1":"Abrir el repositorio","closing.cta2":"Leer el README"
@@ -657,10 +641,6 @@
       "boundary.no1":"Se o oráculo está bem projetado — um gate fraco deixa passar trabalho fraco; a força é um tema à parte",
       "boundary.no2":"Se um resultado \"lê bem\" — o tom e o gosto continuam sendo de um humano",
       "boundary.no3":"O raciocínio do executor. O TASK.md verifica o resultado que um modelo produz, nunca como ele pensa.",
-      "family.tag":"06 · A família","family.h2":"Um só DNA, planos diferentes",
-      "family.p":"Um documento de duas camadas (verificável por máquina + julgável por humano) mais validação determinística, aplicado a um plano diferente em cada irmão. O TASK.md é o irmão de execução — o dinâmico.",
-      "family.f1":"Outcome dinâmico de tarefas — este projeto","family.f2":"Código estático (oráculo congelado)","family.f3":"Contrato de contexto",
-      "family.f4":"Método knowledge-driven","family.f5":"Identidade visual (Google Labs)",
       "closing.h2":"Leia o contrato você mesmo",
       "closing.p":"Licenciado sob MIT, PoC v0.1. Cada afirmação desta página está commitada no repositório que a sustenta — incluindo o que ainda é um mock.",
       "closing.cta1":"Abrir o repositório","closing.cta2":"Ler o README"
