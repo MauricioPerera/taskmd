@@ -1,0 +1,60 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  poc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install engine deps (js-yaml)
+        working-directory: poc/engine
+        run: npm install
+
+      - name: Syntax check all .mjs
+        run: |
+          for f in poc/engine/*.mjs poc/gate-runner.mjs poc/devrepo/*.mjs; do
+            node --check "$f"
+          done
+
+      - name: Contract-lint every TASK.md (must resolve to the closed catalog)
+        working-directory: poc/engine
+        run: |
+          set -e
+          for t in ../TASK.*.md; do
+            echo "lint $t"
+            node run-task.mjs "$t" --lint > /dev/null
+          done
+
+      - name: CRLF regression — front-matter must parse with Windows line endings
+        working-directory: poc/engine
+        run: |
+          set -e
+          # reproduce a Windows (CRLF) checkout in place (TASK + its DOD keep their relative
+          # layout so the DOD still resolves); the engine must still lint. Restore after.
+          sed -i 's/$/\r/' ../TASK.dev.md ../DOD.dev.md
+          node run-task.mjs ../TASK.dev.md --lint > /dev/null
+          git checkout -- ../TASK.dev.md ../DOD.dev.md
+          echo "CRLF contract linted OK"
+
+      - name: check-no-todo scans real sources (clean → 0, TODO → 1)
+        run: |
+          set -e
+          tmp="$(mktemp -d)"
+          cp poc/devrepo/check-no-todo.mjs "$tmp/"
+          printf 'export const x = 1;\n' > "$tmp/clean.mjs"
+          ( cd "$tmp" && node check-no-todo.mjs ) && echo "clean → exit 0 OK"
+          printf '// TODO: pendiente\nexport const y = 2;\n' > "$tmp/dirty.mjs"
+          if ( cd "$tmp" && node check-no-todo.mjs ); then
+            echo "ERROR: check-no-todo debió fallar con un TODO presente"; exit 1
+          else
+            echo "TODO → exit 1 OK"
+          fi
+          rm -rf "$tmp"
