@@ -4,6 +4,8 @@
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![status: PoC v0.1](https://img.shields.io/badge/status-PoC%20v0.1-orange.svg)](taskmd_spec_v0.1.md)
 
+🌐 **[Landing page](https://mauricioperera.github.io/taskmd/)** — un recorrido visual del método (toggle EN/ES/PT).
+
 Un sistema para **gestionar tareas delegadas a agentes** (modelos baratos, incluido control de
 navegador y desarrollo) donde **la compleción la dictamina código determinista, no la opinión del
 modelo**. Hermano de ejecución de la familia [ccdd](https://github.com/MauricioPerera/ccdd) /
