@@ -101,7 +101,7 @@ Como operador de ventas quiero publicar el pedido #X para que el cliente lo reci
 |---|---|---|---|
 | `id` | string | sí | Identificador estable de la tarea. |
 | `objetivo` | string | sí | Una línea, en lenguaje natural. |
-| `executor` | objeto | sí | `{runtime, model, tools, isolation}` — quién/qué ejecuta. `tools` = allowlist (acota superficie). `isolation` ∈ `none\|tool-restricted\|sandbox` (§8.1, obligatorio). Variable de coste. |
+| `executor` | objeto | sí | `{runtime, model, tools, isolation}` — quién/qué ejecuta. `tools` = allowlist (acota superficie). `isolation` ∈ `none\|tool-restricted\|sandbox\|container` (§8.1, obligatorio). Variable de coste. |
 | `context` | path | no | Referencia a un `context.yaml` (ccdd) que gobierna la ENTRADA del ejecutor. Opcional; se compone, no se absorbe. |
 | `dod` | path | sí | Referencia al `DOD.md` transversal aplicable. |
 | `limits` | objeto | sí | `timeout_s`, `max_retries`, `max_cost_usd`. Gates duros también. |
@@ -165,6 +165,11 @@ Correr un gate da: `PASS | FAIL | ERROR` + **evidence** (el valor observado, par
 | `exit` | cmd | code==0, stdout~ | proceso/CLI |
 | `screenshot` | selector, baseline | diff <= threshold | render real |
 | `event` | source, match | recibido < timeout | webhook/cola |
+
+> **Estado en el PoC v0.1** (`poc/engine/catalog.mjs`): implementados hoy son `http`, `dom` y
+> `exit` de esta tabla, **más tres específicos de browser** no listados arriba (`url`,
+> `dom-absent`, `url-scheme`). `db`, `file`, `screenshot` y `event` son parte del diseño del
+> catálogo pero **aún no están implementados** — se añaden cuando un caso real los pida.
 
 Cada fila se materializa como una o más plantillas de step (frase Gherkin + slots
 tipados) según el formato de §5. Añadir un check = añadir una plantilla a este catálogo
